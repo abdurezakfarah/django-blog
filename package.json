@@ -1,0 +1,13 @@
+{
+  "name": "lesson-1",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "tw:build": "npx tailwindcss -i static/css/tw.dev.css -o static/css/tw.css --minify --watch"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.1",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "tailwindcss": "^3.4.15"
+  }
+}

@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+<!--Title-->
+
+{% block title %} Home {% endblock %}
+
+<!--Content-->
+
+{% block content %}
+<main class="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center">
+    <h1 class="text-3xl font-black">
+        {% if user.is_authenticated %}
+          Hello, <span class="{% if user.is_superuser %}text-red-600{% endif %}">{{ user.username }}</span>.
+        {% else %}
+            Hello, there.
+        {% endif %}
+    </h1>
+    <p>Welcome to my website.</p>
+</main>
+{% endblock %}

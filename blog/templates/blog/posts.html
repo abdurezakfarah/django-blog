@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+<!--Title-->
+
+{% block title %} Home {% endblock %}
+
+<!--Content-->
+
+{% block content %}
+<main class="container min-h-[calc(100vh-4rem)] py-6">
+    <pre>
+        {{ user.role }}
+    </pre>
+    <hgroup class="max-w-sm flex-1 space-y-2 text-pretty">
+        <h1 class="inline-block text-3xl font-bold tracking-tight lg:text-4xl">Blog</h1>
+        <p class="text-pretty font-medium tracking-tight text-gray-400">
+            Sharing Thoughts, Projects, and a Little Bit of Everything in Between
+        </p>
+    </hgroup>
+
+    {% if posts %}
+    <div class="mt-10">
+        {% for post in posts %}
+        <article
+            class="w-[300px] rounded-2xl border border-gray-600 bg-white p-5 shadow-sm"
+        >
+            <h3 class="font-bold text-blue-500">{{ post.title }}</h3>
+            <p class="">{{ post.body }}</p>
+            <h6 class="mb-5 text-sm font-light">{{ post.date }}</h6>
+            <hr class="my-5" />
+            <p class="text-gray-500">
+                By <span class="font-bold">{{ post.author }}</span>
+            </p>
+            <hr class="my-5" />
+            {% if user.is_authenticated and user == post.author %}
+            <form action="" method="DELETE">
+                <button class=" flex gap-2 text-white items-center justify-center bg-red-600 py-1 px-2 rounded-lg hover:bg-red-700">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10 12V17" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14 12V17" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M4 7H20" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    Delete
+                </button>
+            </form>
+            {% endif %}
+            <a
+                href="{% url 'blog:post' slug=post.slug %}"
+                class="rounded-lg bg-blue-400 px-4 py-2 text-center text-white hover:bg-blue-500"
+                >Read more &rarr;</a
+            >
+        </article>
+        {% endfor %}
+    </div>
+
+    {% endif %}
+
+    <div class="">{% for post in posts %} {% endfor %}</div>
+</main>
+{% endblock %}

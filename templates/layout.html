@@ -1,0 +1,24 @@
+<!doctype html>
+{% load static %}
+<html lang="en" class="scroll-smooth focus:scroll-auto">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/tw.css' %}" />
+        <title>{% block title %} Django App {% endblock %}</title>
+    </head>
+    <body class="font-serif">
+        {% block navbar %}
+            {% include "navbar.html" %}
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+    </body>
+</html>
